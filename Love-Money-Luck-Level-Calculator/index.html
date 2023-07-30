@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Love Money Luck Level</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 8px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: #FFF;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <h1>Enter Color Code (in Hex format)</h1>
+  <input type="text" id="colorInput" placeholder="For example: #FF0000">
+  <button onclick="checkColor()">Show</button>
+
+  <h2 id="result"></h2>
+
+  <script>
+    function checkColor() {
+      const colorInput = document.getElementById("colorInput");
+      const colorValue = colorInput.value;
+
+      // Create a function to validate the color value and ensure it's a valid hex color code.
+      function isValidHexColor(color) {
+        const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+        return hexColorRegex.test(color);
+      }
+
+      if (!isValidHexColor(colorValue)) {
+        alert("Please enter a valid hex color code!");
+        return;
+      }
+
+      // Calculate the love, money, and luck levels based on the color code using the predefined algorithms.
+      const loveLevel = calculateLoveLevel(colorValue);
+      const moneyLevel = calculateMoneyLevel(colorValue);
+      const luckLevel = calculateLuckLevel(colorValue);
+
+      const resultElement = document.getElementById("result");
+      resultElement.innerHTML = `Love Level: ${loveLevel}%<br>
+                                 Money Level: ${moneyLevel}%<br>
+                                 Luck Level: ${luckLevel}%`;
+    }
+
+    // Define the predefined algorithms to calculate the love, money, and luck levels based on the color code.
+    function calculateLoveLevel(color) {
+      // You can use a suitable algorithm here to determine the love level based on the color code.
+      // For example, let's randomly determine the love level by summing the ASCII values of the color code characters.
+      let total = 0;
+      for (let i = 1; i < color.length; i++) {
+        total += color.charCodeAt(i);
+      }
+      return (total % 101);
+    }
+
+    function calculateMoneyLevel(color) {
+      // You can use a suitable algorithm here to determine the money level based on the color code.
+      // For example, let's randomly determine the money level using the ASCII value of the first character of the color code.
+      return (color.charCodeAt(1) % 101);
+    }
+
+    function calculateLuckLevel(color) {
+      // You can use a suitable algorithm here to determine the luck level based on the color code.
+      // For example, let's randomly determine the luck level using the length of the color code.
+      return (color.length % 101);
+    }
+  </script>
+</body>
+</html>
